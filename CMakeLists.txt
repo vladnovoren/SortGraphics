@@ -17,6 +17,8 @@ add_link_options(
   -fsanitize=address
 )
 
+add_subdirectory(gui/)
+
 add_executable(SortGraphics src/main.cpp)
 
-target_include_directories(SortGraphics PUBLIC include/)
+target_include_directories(SortGraphics PUBLIC include/ glib/include)

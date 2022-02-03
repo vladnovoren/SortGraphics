@@ -79,18 +79,6 @@ T Max(const T& first, const T& second) {
 }
 
 template<typename T>
-T Min(const T& first, const T& second) {
-  return (first < second ? first : second);
-}
-
-template<typename T>
-void Swap(T& first, T& second) {
-  T tmp = first;
-  first = second;
-  second = tmp;
-}
-
-template<typename T>
 bool CheckAlloc(T* ptr) {
   if (ptr == nullptr) {
     std::cout << "bad alloc\n";
@@ -107,7 +95,7 @@ void BubbleSort(T* array, size_t size) {
   for (size_t i = 0; i < size - 1; ++i) {
     for (size_t j = 0; j < size - 1; ++j) {
       if (array[j] > array[j + 1]) {
-        Swap(array[j], array[j + 1]);
+        std::swap(array[j], array[j + 1]);
       }
     }
   }
@@ -124,7 +112,7 @@ void SelectionSort(T* array, size_t size) {
         min_id = j;
       }
     }
-    Swap(array[i], array[min_id]);
+    std::swap(array[i], array[min_id]);
   }
 }
 
@@ -144,7 +132,7 @@ void QuickSort(CountSortElem<T>* array, size_t left, size_t right) {
       --right_id;
     }
     if (left_id <= right_id) {
-      Swap(array[left_id], array[right_id]);
+      std::swap(array[left_id], array[right_id]);
       ++left_id;
       --right_id;
     }
