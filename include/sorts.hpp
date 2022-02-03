@@ -2,7 +2,12 @@
 #define SORTS_HPP
 
 #include <vector>
-#include <cstdio>
+#include <iostream>
+#include <cstring>
+#include <cassert>
+#include <ctime>
+
+bool CheckAlloc(void* ptr);
 
 template<typename T>
 T Max(const T& first, const T& second) {
@@ -23,7 +28,24 @@ void Swap(T& first, T& second) {
 
 int Medium(int first, int second, int third);
 
-void BubbleSort(std::vector<int>& array);
+void BubbleSort(int* array, size_t size);
 
+void SelectionSort(int* array, size_t size);
+
+void QuickSort(int* array, size_t left, size_t right);
+
+void Merge(int* array, size_t left, size_t mid, size_t right, int* tmp_buffer);
+
+void MergeSortRecursive(int* array, size_t left, size_t right, int* tmp_buffer);
+
+void MergeSort(int* array, size_t size);
+
+bool CheckIncrease(const int* array, size_t size);
+
+void EnterArray(int* array, size_t size);
+
+void SetRandomArray(int* array, size_t size);
+
+void PrintArray(const int* array, size_t size);
 
 #endif /* sorts.hpp */
