@@ -17,6 +17,6 @@ add_link_options(
   -fsanitize=address
 )
 
-add_executable(SortGraphics src/main.cpp src/sorts.cpp)
+add_executable(SortGraphics src/main.cpp)
 
 target_include_directories(SortGraphics PUBLIC include/)
