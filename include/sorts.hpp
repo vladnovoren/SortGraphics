@@ -7,6 +7,26 @@
 #include <cassert>
 #include <ctime>
 
+class CountSortElem {
+ public:
+  int value_ = 0;
+
+  CountSortElem() = default;
+  CountSortElem(int value);
+  CountSortElem(const CountSortElem& other);
+  ~CountSortElem() = default;
+
+  CountSortElem& operator=(const CountSortElem& other);
+  bool operator<(const CountSortElem& right);
+
+  size_t GetNComp() const;
+  size_t GetNAssign() const;
+
+ protected:
+  size_t n_comp_ = 0;
+  size_t n_assign_ = 0;
+};
+
 bool CheckAlloc(void* ptr);
 
 template<typename T>

@@ -1,5 +1,29 @@
 #include "sorts.hpp"
 
+CountSortElem::CountSortElem(const CountSortElem& other):
+               value_(other.value_) {
+  ++n_assign_;
+}
+
+CountSortElem& CountSortElem::operator=(const CountSortElem& other) {
+  value_ = other.value_;
+  ++n_assign_;
+  return *this;
+}
+
+bool CountSortElem::operator<(const CountSortElem& right) {
+  ++n_comp_;
+  return value_ < right.value_;
+}
+
+size_t CountSortElem::GetNComp() const {
+  return n_comp_;
+}
+
+size_t CountSortElem::GetNAssign() const {
+  return n_assign_;
+}
+
 bool CheckAlloc(void* ptr) {
   if (ptr == nullptr) {
     std::cout << "bad alloc\n";
@@ -9,11 +33,24 @@ bool CheckAlloc(void* ptr) {
   }
 }
 
-int Medium(int first, int second, int third) {
-  int max = Max(Max(first, second), third);
-  int min = Min(Min(first, second), third);
-
-  return first + second + third - min - max;
+int Medium(int a, int b, int c) {
+  if (a <= b) {
+    if (c <= a) { // c <= a <= b
+      return a;
+    }
+    if (c <= b) { // a <= c <= b
+      return c;
+    }
+    return b; // a <= b <= c;
+  } else { // b < a
+    if (c <= b) { // c <= b <= a
+      return b;
+    }
+    if (c <= a) { // b <= c <= a
+      return c;
+    }
+    return a; // b <= a <= c
+  }
 }
 
 void BubbleSort(int* array, size_t size) {
