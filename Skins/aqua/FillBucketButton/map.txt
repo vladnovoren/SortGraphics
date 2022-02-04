@@ -1,0 +1,13 @@
+rect
+
+; idle
+ 0  0 ; position
+30 30 ; size
+
+; hovered
+30  0 ; position
+30 30 ; size
+
+; pressed
+60  0 ; position
+30 30 ; size

@@ -7,15 +7,11 @@
 
 #include "gui_abstract_button_skin.hpp"
 #include "gui_title_bar_skin.hpp"
-#include "gui_main_menu_skin.hpp"
-#include "gui_app_config.hpp"
 #include "gui_window_skin.hpp"
-#include "gui_tool_bar_skin.hpp"
-#include "gui_color_select_button_skin.hpp"
-#include "gui_canvas_skin.hpp"
-
 
 namespace gui {
+  static const char* const AQUA_SKIN_FOLDER_PATH = "../Skins/aqua/";
+
   class SkinManager {
    protected:
     SkinManager(const char* folder_path);
@@ -24,13 +20,9 @@ namespace gui {
     AbstractButtonSkin*    m_maximize_button_skin     = nullptr;
     AbstractButtonSkin*    m_close_button_skin        = nullptr;
     TitleBarSkin*          m_title_bar_skin           = nullptr;
-    MainMenuSkin*          m_main_menu_skin           = nullptr;
     WindowSkin*            m_window_skin              = nullptr;
-    ToolBarSkin*           m_tool_bar_skin            = nullptr;
-    ColorSelectButtonSkin* m_color_select_button_skin = nullptr;
     AbstractButtonSkin*    m_brush_button_skin        = nullptr;
     AbstractButtonSkin*    m_fill_bucket_button_skin  = nullptr;
-    CanvasSkin*            m_canvas_skin              = nullptr;
     AbstractButtonSkin*    m_eraser_button_skin       = nullptr;
 
     glib::Font*            m_san_francisco_font       = nullptr;
@@ -55,24 +47,13 @@ namespace gui {
 
     AbstractButtonSkin*    LoadButtonSkinFromFolder(const char* folder_path);
     TitleBarSkin*          LoadTitleBarSkinFromFolder(const char* folder_path);
-    MainMenuSkin*          LoadMainMenuSkinFromFolder(const char* folder_path);
     WindowSkin*            LoadWindowSkinFromFolder(const char* folder_path);
-    ToolBarSkin*           LoadToolBarSkinFromFolder(const char* folder_path);
-    ColorSelectButtonSkin* LoadSelectButtonSkinFromFolder(const char* folder_path);
-    CanvasSkin*            LoadCanvasSkinFromFolder(const char* folder_path);
 
     AbstractButtonSkin*    GetMinimizeButtonSkin() const;
     AbstractButtonSkin*    GetMaximizeButtonSkin() const;
     AbstractButtonSkin*    GetCloseButtonSkin() const;
     TitleBarSkin*          GetTitleBarSkin() const;
-    MainMenuSkin*          GetMainMenuSkin() const;
     WindowSkin*            GetWindowSkin() const;
-    ToolBarSkin*           GetToolBarSkin() const;
-    ColorSelectButtonSkin* GetColorSelectButtonSkin() const;
-    AbstractButtonSkin*    GetBrushButtonSkin() const;
-    AbstractButtonSkin*    GetFillBucketButtonSkin() const;
-    CanvasSkin*            GetCanvasSkin() const;
-    AbstractButtonSkin*    GetEraserButtonSkin() const;
 
     glib::Font*            GetSanFranciscoFont() const;
   };

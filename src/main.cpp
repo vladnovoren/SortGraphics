@@ -1,14 +1,18 @@
 #include "sorts.hpp"
+#include "app.hpp"
 
 int main() {
   size_t size = 0;
   std::cin >> size;
   CountSortElem<int>* array = new CountSortElem<int>[size];
 
+  App& app = App::GetInstance();
+  app.Exec();
+
   CheckAlloc(array);
   // SetRandomArray(array, size);
   // BubbleSort(array, size);
-  MergeSort(array, size);
+  // MergeSort(array, size);
   QuickSort(array, 0, size - 1);
 
   size_t n_assign = NAssigns(array, size) - size;

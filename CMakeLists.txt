@@ -19,6 +19,7 @@ add_link_options(
 
 add_subdirectory(gui/)
 
-add_executable(SortGraphics src/main.cpp)
+add_executable(SortGraphics src/main.cpp src/app.cpp)
 
 target_include_directories(SortGraphics PUBLIC include/ glib/include)
+target_link_libraries(SortGraphics PUBLIC gui)

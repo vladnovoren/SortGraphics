@@ -1,0 +1,26 @@
+; left texture
+
+3  3 ; origin position
+5 21 ; origin size
+
+0  0 ; all position
+8 24 ; all size
+
+
+; middle texture
+
+8  3 ; origin position
+1 21 ; origin size
+
+8  0 ; all position
+1 24 ; all size
+
+
+; right texture
+
+9  4 ; origin position
+5 21 ; origin size
+
+9  0 ; all position
+8 24 ; all size
+

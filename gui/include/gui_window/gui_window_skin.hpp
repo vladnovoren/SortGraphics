@@ -8,6 +8,8 @@
 
 
 namespace gui {
+  static const int WINDOW_SHADOW_THICKNESS = 3;
+
   struct WindowSkin: AbstractWidgetSkin {
     glib::IntRect m_left_edge_location;
     glib::IntRect m_left_bottom_angle_location;
