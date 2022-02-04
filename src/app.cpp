@@ -1,9 +1,12 @@
 #include "app.hpp"
 
 App::App():
-     m_render_window(glib::Vector2f(APP_WIDTH, APP_HEIGHT), "Repin") {
+     m_render_window(glib::Vector2i(APP_WIDTH, APP_HEIGHT), "SortGraphics") {
   gui::DummyContainerWidget* root = new gui::DummyContainerWidget;
   m_widget_manager.SetRoot(root);
+  CoordSys* test = new CoordSys(glib::IntRect(50, 50, 500, 500),
+                                Ranges(0, 0, 500, 500));
+  root->AddChild(test);
 }
 
 App::~App() = default;
@@ -14,7 +17,6 @@ App& App::GetInstance() {
 }
 
 void App::Exec() {
-  printf("entered exec\n");
   while (m_widget_manager.IsOpen()) {
     bool is_polled = true;
     while (is_polled) {

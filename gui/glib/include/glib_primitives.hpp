@@ -76,12 +76,17 @@ namespace glib {
     Line(const Vector2<LineType>& begin, const Vector2<LineType>& end,
          LineType thickness):
     m_begin(begin), m_end(end), m_thickness(thickness) {}
+    Line(const LineType begin_x, const LineType begin_y,
+         const LineType end_x, const LineType end_y,
+         const LineType thickness):
+    m_begin(begin_x, begin_y), m_end(end_x, end_y), m_thickness(thickness) {}
   };
 
 
   using IntRect   = Rect<int>;
   using UIntRect  = Rect<unsigned int>;
   using FloatRect = Rect<float>;
+  using DoubleRect = Rect<double>;
 
   using IntLine   = Line<int>;
   using UIntLine  = Line<unsigned int>;

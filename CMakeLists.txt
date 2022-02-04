@@ -17,9 +17,14 @@ add_link_options(
   -fsanitize=address
 )
 
+set(APP_SOURCE src/app.cpp
+               src/coord_sys.cpp
+               src/main.cpp
+)
+
 add_subdirectory(gui/)
 
-add_executable(SortGraphics src/main.cpp src/app.cpp)
+add_executable(SortGraphics ${APP_SOURCE})
 
 target_include_directories(SortGraphics PUBLIC include/ glib/include)
 target_link_libraries(SortGraphics PUBLIC gui)

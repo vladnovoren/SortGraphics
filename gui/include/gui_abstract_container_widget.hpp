@@ -12,7 +12,6 @@ namespace gui {
    protected:
     std::list<AbstractWidget*> m_children;
 
-    void AddChild(AbstractWidget* child);
    public:
     AbstractContainerWidget() = default;
     AbstractContainerWidget(const glib::IntRect& location);
@@ -30,6 +29,8 @@ namespace gui {
                                       MouseButton button) override;
     EventResult OnMouseMove(glib::Vector2i new_local_mouse_position,
                             glib::Vector2i new_global_mouse_position) override;
+
+    void AddChild(AbstractWidget* child);
 
     void Draw(glib::RenderTarget* render_target,
               const glib::Vector2i& position) override;

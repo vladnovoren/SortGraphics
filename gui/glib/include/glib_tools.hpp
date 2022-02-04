@@ -37,24 +37,10 @@ namespace glib {
     VectorType y = 0;
     Vector2() = default;
 
-
-    Vector2(const Vector2<float>& other) {
+    Vector2(const Vector2& other) {
       x = other.x;
       y = other.y;
     }
-
-
-    Vector2(const Vector2<unsigned int>& other) {
-      x = other.x;
-      y = other.y;
-    }
-
-
-    Vector2(const Vector2<int>& other) {
-      x = other.x;
-      y = other.y;
-    }
-
 
     constexpr Vector2(VectorType x, VectorType y) {
       this->x = x;
@@ -203,6 +189,7 @@ namespace glib {
   using Vector2i = Vector2<int>;
   using Vector2u = Vector2<unsigned int>;
   using Vector2f = Vector2<float>;
+  using Vector2d = Vector2<double>;
 }
 
 

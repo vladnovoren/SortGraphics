@@ -122,7 +122,6 @@ void gui::AbstractContainerWidget::Draw(glib::RenderTarget* render_target,
             ++child_it) {
     auto child_ptr = *child_it;
     assert(child_ptr != nullptr);
-    child_ptr->Draw(render_target, position + m_location.m_position);
+    child_ptr->Draw(render_target, position + child_ptr->Location().m_position);
   }
 }
-
