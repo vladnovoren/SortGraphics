@@ -20,6 +20,7 @@ add_link_options(
 set(APP_SOURCE src/app.cpp
                src/coord_sys.cpp
                src/main.cpp
+               src/sorting_system.cpp
 )
 
 add_subdirectory(gui/)

@@ -89,30 +89,27 @@ bool CheckAlloc(T* ptr) {
 }
 
 template<typename T>
-void BubbleSort(T* array, size_t size) {
+void BubbleSort(T* array, size_t left, size_t right) {
   assert(array != nullptr);
 
-  for (size_t i = 0; i < size - 1; ++i) {
-    for (size_t j = 0; j < size - 1; ++j) {
-      if (array[j] > array[j + 1]) {
-        std::swap(array[j], array[j + 1]);
+  for (size_t i = left; i <= right; ++i) {
+    for (size_t j = left; j < i; ++j) {
+      if (array[i] < array[j]) {
+        std::swap(array[i], array[j]);
       }
     }
   }
 }
 
 template<typename T>
-void SelectionSort(T* array, size_t size) {
+void SelectionSort(T* array, size_t left, size_t right) {
   assert(array != nullptr);
 
-  for (size_t i = 0; i < size; ++i) {
+  for (size_t i = left; i <= right; ++i) {
     size_t min_id = i;
-    for (size_t j = i; j < size; ++j) {
-      if (array[j] < array[min_id]) {
-        min_id = j;
-      }
+    for (size_t j = i; j <= right; ++j) {
+      
     }
-    std::swap(array[i], array[min_id]);
   }
 }
 
