@@ -17,6 +17,5 @@ void SortingSystem::ShuffleArray() {
 
 void SortingSystem::BubbleSort() {
   ShuffleArray();
-  
-  
+    
 }

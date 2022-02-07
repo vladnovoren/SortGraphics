@@ -1,5 +1,5 @@
-#ifndef COORD_SYS_HPP
-#define COORD_SYS_HPP
+#ifndef COORD_SYSTEM_HPP
+#define COORD_SYSTEM_HPP
 
 #include "gui_abstract_widget.hpp"
 
@@ -26,11 +26,11 @@ struct FunctionValue {
   T value_;
 };
 
-class CoordSys: public gui::AbstractWidget {
+class CoordSystem: public gui::AbstractWidget {
  public:
-  CoordSys() = default;
-  CoordSys(const glib::IntRect& location, const Ranges& ranges);
-  ~CoordSys() = default;
+  CoordSystem() = default;
+  CoordSystem(const glib::IntRect& location, const Ranges& ranges);
+  ~CoordSystem() = default;
 
   void SetPPU(const double ppu);
   void SetRanges(const Ranges& ranges);
@@ -59,7 +59,7 @@ class CoordSys: public gui::AbstractWidget {
 };
 
 template<typename T>
-void CoordSys::RenderFunction(const FunctionValue<T>* array, size_t size) {
+void CoordSystem::RenderFunction(const FunctionValue<T>* array, size_t size) {
   assert(array != nullptr);
 
   glib::Vector2i curr(array[0].arg_, -array[0].value_);
@@ -84,4 +84,4 @@ void CoordSys::RenderFunction(const FunctionValue<T>* array, size_t size) {
   render_texture_.RenderLine(line, glib::ColorRGBA());
 }
 
-#endif /* coord_sys.hpp */
+#endif /* coord_system.hpp */

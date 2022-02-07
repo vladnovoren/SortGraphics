@@ -4,7 +4,7 @@ App::App():
      m_render_window(glib::Vector2i(APP_WIDTH, APP_HEIGHT), "SortGraphics") {
   gui::DummyContainerWidget* root = new gui::DummyContainerWidget;
   m_widget_manager.SetRoot(root);
-  CoordSys* test = new CoordSys(glib::IntRect(50, 50, 500, 500),
+  CoordSystem* test = new CoordSystem(glib::IntRect(50, 50, 500, 500),
                                 Ranges(0, 0, 500, 500));
   root->AddChild(test);
 }

@@ -19,8 +19,8 @@ class SortingSystem {
  public:
   SortingSystem();
 
-  size_t n_assigns_[size_t(Sorts::N_SORTS)][ARRAY_SIZE] = {};
-  size_t n_comps_[size_t(Sorts::N_SORTS)][ARRAY_SIZE]   = {};
+  size_t assigns_cnt_[size_t(Sorts::N_SORTS)][ARRAY_SIZE] = {};
+  size_t comps_cnt_[size_t(Sorts::N_SORTS)][ARRAY_SIZE]   = {};
 
   void ShuffleArray();
 

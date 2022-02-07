@@ -8,74 +8,74 @@
 #include <ctime>
 
 template<typename T>
-class CountSortElem {
+class OpCountElem {
  public:
   T value_ = 0;
 
-  CountSortElem() = default;
+  OpCountElem() = default;
 
-  CountSortElem(T value): value_(value) {}
+  OpCountElem(const T& value): value_(value) {}
 
-  CountSortElem(const CountSortElem& other): value_(other.value_) {
-    ++n_assign_;
+  OpCountElem(const OpCountElem& other): value_(other.value_) {
+    ++assigns_cnt_;
   }
 
-  CountSortElem& operator=(const CountSortElem& other) {
+  OpCountElem& operator=(const OpCountElem& other) {
     value_ = other.value_;
-    ++n_assign_;
+    ++assigns_cnt_;
     return *this;
   }
 
-  ~CountSortElem() = default;
+  ~OpCountElem() = default;
 
-  bool operator<(const CountSortElem& right) {
-    ++n_comp_;
+  bool operator<(const OpCountElem& right) {
+    ++comps_cnt_;
     return value_ < right.value_;
   }
 
-  bool operator>(const CountSortElem& right) {
-    ++n_comp_;
+  bool operator>(const OpCountElem& right) {
+    ++comps_cnt_;
     return value_ > right.value_;
   }
 
-  bool operator<=(const CountSortElem& right) {
-    ++n_comp_;
+  bool operator<=(const OpCountElem& right) {
+    ++comps_cnt_;
     return value_ <= right.value_;
   }
 
-  bool operator>=(const CountSortElem& right) {
-    ++n_comp_;
+  bool operator>=(const OpCountElem& right) {
+    ++comps_cnt_;
     return value_ >= right.value_;
   }
 
-  size_t GetNComp() const {
-    return n_comp_;
+  size_t GetCompsCnt() const {
+    return comps_cnt_;
   }
 
-  size_t GetNAssign() const {
-    return n_assign_;
+  size_t GetAssignsCnt() const {
+    return assigns_cnt_;
   }
-
  protected:
-  size_t n_comp_ = 0;
-  size_t n_assign_ = 0;
+  static size_t assigns_cnt_;
+  static size_t comps_cnt_ ;
 };
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, const CountSortElem<T>& elem) {
+size_t OpCountElem<T>::assigns_cnt_ = 0;
+
+template<typename T>
+size_t OpCountElem<T>::comps_cnt_   = 0;
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const OpCountElem<T>& elem) {
   os << elem.value_;
   return os;
 }
 
 template<typename T>
-std::istream& operator>>(std::istream& is, const CountSortElem<T>& elem) {
+std::istream& operator>>(std::istream& is, const OpCountElem<T>& elem) {
   is >> elem.value_;
   return is;
-}
-
-template<typename T>
-T Max(const T& first, const T& second) {
-  return (first > second ? first : second);
 }
 
 template<typename T>
@@ -108,16 +108,21 @@ void SelectionSort(T* array, size_t left, size_t right) {
   for (size_t i = left; i <= right; ++i) {
     size_t min_id = i;
     for (size_t j = i; j <= right; ++j) {
-      
+      if (array[j] < array[min_id]) {
+        min_id = j;
+      }
+    }
+    if (i != min_id) {
+      std::swap(array[i], array[min_id]);
     }
   }
 }
 
 template<typename T>
-void QuickSort(CountSortElem<T>* array, size_t left, size_t right) {
+void QuickSort(OpCountElem<T>* array, size_t left, size_t right) {
   assert(array != nullptr);
 
-  CountSortElem<T> pivot = array[(left + right) / 2];
+  OpCountElem<T> pivot = array[(left + right) / 2];
 
   size_t left_id = left, right_id = right;
 
@@ -191,24 +196,24 @@ void MergeSortRecursive(T* array, size_t left, size_t right, T* tmp_buffer) {
 }
 
 template<typename T>
-void MergeSort(T* array, size_t size) {
+void MergeSort(T* array, size_t left, size_t right) {
   assert(array != nullptr);
 
-  T* tmp_buffer = new T[size];
+  T* tmp_buffer = new T[right - left + 1];
   if (!CheckAlloc(tmp_buffer)) {
     return;
   }
 
-  MergeSortRecursive(array, 0, size, tmp_buffer);
+  MergeSortRecursive(array, left, right + 1, tmp_buffer);
 
   delete[] tmp_buffer;
 }
 
 template<typename T>
-bool CheckIncrease(T* array, size_t size) {
+bool CheckIncrease(T* array, size_t left, size_t right) {
   assert(array != nullptr);
 
-  for (size_t i = 0; i < size - 1; ++i) {
+  for (size_t i = left; i < right; ++i) {
     if (array[i + 1] < array[i]) {
       return false;
     }
@@ -227,11 +232,11 @@ void EnterArray(T* array, size_t size) {
 }
 
 template<typename T>
-void SetRandomArray(CountSortElem<T>* array, size_t size) {
+void SetRandomValues(OpCountElem<T>* array, size_t left, size_t right) {
   assert(array != nullptr);
 
   srand(time(NULL));
-  for (size_t i = 0; i < size; ++i) {
+  for (size_t i = left; i <= right; ++i) {
     array[i] = rand();
   }
 }
@@ -244,28 +249,6 @@ void PrintArray(const T* array, size_t size) {
     std::cout << array[i] << ' ';
   }
   std::cout << '\n';
-}
-
-template<typename T>
-size_t NAssigns(const CountSortElem<T>* array, size_t size) {
-  assert(array != nullptr);
-
-  size_t result = 0;
-  for (size_t i = 0; i < size; ++i) {
-    result += array[i].GetNAssign();
-  }
-  return result;
-}
-
-template<typename T>
-size_t NComp(const CountSortElem<T>* array, size_t size) {
-  assert(array != nullptr);
-
-  size_t result = 0;
-  for (size_t i = 0; i < size; ++i) {
-    result += array[i].GetNComp();
-  }
-  return result;
 }
 
 #endif /* sorst.hpp */

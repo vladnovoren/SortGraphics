@@ -16,7 +16,7 @@ double Ranges::GetHeight() const {
   return max_y_ - min_y_;
 }
 
-CoordSys::CoordSys(const glib::IntRect& location,
+CoordSystem::CoordSystem(const glib::IntRect& location,
                    const Ranges& ranges):
           AbstractWidget(location), ranges_(ranges) {
   ppu_ = static_cast<double>(ranges.GetWidth() / location.m_size.x);
@@ -25,28 +25,28 @@ CoordSys::CoordSys(const glib::IntRect& location,
   Clear();
 }
 
-void CoordSys::SetPPU(const double ppu) {
+void CoordSystem::SetPPU(const double ppu) {
   ppu_ = ppu;
 }
 
-void CoordSys::SetRanges(const Ranges& ranges) {
+void CoordSystem::SetRanges(const Ranges& ranges) {
   ranges_ = ranges;
 }
 
-double CoordSys::GetPPU() const {
+double CoordSystem::GetPPU() const {
   return ppu_;
 }
 
-const Ranges& CoordSys::GetRanges() const {
+const Ranges& CoordSystem::GetRanges() const {
   return ranges_;
 }
 
-void CoordSys::CountCenter() {
+void CoordSystem::CountCenter() {
   center_.x = ppu_ * fabs(ranges_.min_x_);
   center_.y = ppu_ * fabs(ranges_.max_y_);
 }
 
-void CoordSys::RenderBoundingbox() {
+void CoordSystem::RenderBoundingbox() {
   glib::Vector2i upper_left(GRAPHICS_THICKNESS, GRAPHICS_THICKNESS);
   glib::Vector2i upper_right(upper_left.x + m_location.m_size.x - 2 * GRAPHICS_THICKNESS,
                              upper_left.y);
@@ -69,7 +69,7 @@ void CoordSys::RenderBoundingbox() {
   render_texture_.Display();
 }
 
-void CoordSys::RenderAxes() {
+void CoordSystem::RenderAxes() {
   glib::Vector2i ox_left(GRAPHICS_THICKNESS, center_.y);
   glib::Vector2i ox_right(m_location.m_size.x - GRAPHICS_THICKNESS, center_.y);
 
@@ -87,14 +87,14 @@ void CoordSys::RenderAxes() {
   render_texture_.Display();
 }
 
-void CoordSys::Clear() {
+void CoordSystem::Clear() {
   render_texture_.Clear(glib::ColorRGBA(1, 1, 1));
 
   RenderBoundingbox();
   RenderAxes();
 }
 
-void CoordSys::Draw(glib::RenderTarget* render_target,
+void CoordSystem::Draw(glib::RenderTarget* render_target,
                     const glib::Vector2i& position) {
   assert(render_target != nullptr);
 

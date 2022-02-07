@@ -2,31 +2,22 @@
 #include "app.hpp"
 
 int main() {
-  App& app = App::GetInstance();
-  app.Exec();
-  return 0;
-
   size_t size = 0;
   std::cin >> size;
-  CountSortElem<int>* array = new CountSortElem<int>[size];
-  
+  OpCountElem<int>* array = new OpCountElem<int>[size];
   CheckAlloc(array);
-  // SetRandomArray(array, size);
-  // BubbleSort(array, size);
-  // MergeSort(array, size);
-  QuickSort(array, 0, size - 1);
 
-  size_t n_assign = NAssigns(array, size) - size;
-  size_t n_comp   = NComp(array, size);
+  SetRandomValues(array, 0, size - 1);
+  // BubbleSort(array, 0, size - 1);
+  SelectionSort(array, 0, size - 1);
+  // MergeSort(array, 0, size - 1);
+  // QuickSort(array, 0, size - 1);
 
-  if (CheckIncrease(array, size)) {
+  if (CheckIncrease(array, 0, size - 1)) {
     std::cout << "success!\n";
   } else {
     std::cout << "failure!\n";
   }
-
-  std::cout << "n_assign: " << n_assign << '\n';
-  std::cout << "n_comp: " << n_comp << '\n';
 
   delete[] array;
 
