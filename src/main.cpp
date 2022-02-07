@@ -10,6 +10,7 @@ int main() {
 
   std::cout << statistics.assigns_cnt_.back() << ' ' << statistics.comps_cnt_.back() << '\n';
   
+  
   App& app = App::GetInstance();
   app.Exec();
 
