@@ -1,0 +1,9 @@
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/CMakeFiles/SortGraphics.dir
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/gui/CMakeFiles/rebuild_cache.dir
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/gui/CMakeFiles/edit_cache.dir
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/gui/CMakeFiles/gui.dir
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/gui/glib/CMakeFiles/rebuild_cache.dir
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/gui/glib/CMakeFiles/edit_cache.dir
+/home/vladnovoren/projects/SortGraphics/cmake-build-debug/gui/glib/CMakeFiles/glib.dir

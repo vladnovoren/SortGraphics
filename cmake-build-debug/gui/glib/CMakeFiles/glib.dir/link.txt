@@ -1,0 +1,2 @@
+/usr/bin/ar qc libglib.a CMakeFiles/glib.dir/src/glib_clock.cpp.o CMakeFiles/glib.dir/src/glib_color.cpp.o CMakeFiles/glib.dir/src/glib_events.cpp.o CMakeFiles/glib.dir/src/glib_primitives.cpp.o CMakeFiles/glib.dir/src/glib_render_target.cpp.o CMakeFiles/glib.dir/src/glib_render_texture.cpp.o CMakeFiles/glib.dir/src/glib_render_window.cpp.o CMakeFiles/glib.dir/src/glib_texture.cpp.o CMakeFiles/glib.dir/src/glib_tools.cpp.o CMakeFiles/glib.dir/src/glib_text.cpp.o CMakeFiles/glib.dir/src/glib_font.cpp.o
+/usr/bin/ranlib libglib.a
