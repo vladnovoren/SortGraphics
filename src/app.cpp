@@ -22,6 +22,9 @@ void App::Exec() {
     while (is_polled) {
       m_widget_manager.GetAndProcessEvent(&m_render_window, is_polled);
     }
+
+    
+
     m_widget_manager.DeleteMatched();
     m_widget_manager.Draw(&m_render_window);
   }

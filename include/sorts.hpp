@@ -6,6 +6,8 @@
 #include <cstring>
 #include <cassert>
 #include <ctime>
+#include <algorithm>
+#include <random>
 
 template<typename T>
 class OpCountElem {
@@ -228,16 +230,6 @@ void EnterArray(T* array, size_t size) {
 
   for (size_t i = 0; i < size; ++i) {
     std::cin >> array[i];
-  }
-}
-
-template<typename T>
-void SetRandomValues(OpCountElem<T>* array, size_t left, size_t right) {
-  assert(array != nullptr);
-
-  srand(time(NULL));
-  for (size_t i = left; i <= right; ++i) {
-    array[i] = rand();
   }
 }
 

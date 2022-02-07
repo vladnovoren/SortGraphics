@@ -2,6 +2,8 @@
 #include "app.hpp"
 
 int main() {
+
+  
   size_t size = 0;
   std::cin >> size;
   OpCountElem<int>* array = new OpCountElem<int>[size];

@@ -3,35 +3,46 @@
 
 #include "sorts.hpp"
 
-enum class Sorts {
+enum class SortType {
   BUBBLE,
   SELECTION,
   QUICK_SORT,
   MERGE,
   STD_SORT,
   STD_STABLE_SORT,
-  N_SORTS
+  SORTS_CNT
 };
 
-static const size_t ARRAY_SIZE = 500;
+static const DEFAULT_ARRAY_SIZE = 100;
+
 
 class SortingSystem {
  public:
   SortingSystem();
+  SortingSystem(const size_t array_size);
+  SortingSystem() = default;
 
-  size_t assigns_cnt_[size_t(Sorts::N_SORTS)][ARRAY_SIZE] = {};
-  size_t comps_cnt_[size_t(Sorts::N_SORTS)][ARRAY_SIZE]   = {};
+  void Resize(const size_t new_size);
 
+  const std::vector<size_t>& GetSortStatistics(const Sort sort_type);
+
+ protected:
+  bool sorted_ = false;
+
+  std::vector<OpCountElem<int>> array_;
+
+  std::vector<vector<size_t>> assigns_cnt_(static_cast<size_t>(SortType::SORTS_CNT), std::vector<size_t>(DEFAULT_ARRAY_SIZE));
+  std::vector<vector<size_t>> comps_cnt_  (static_cast<size_t>(SortType::SORTS_CNT), std::vector<size_t>(DEFAULT_ARRAY_SIZE));
+
+  std::vector<bool> sort_checked_(static_cast<size_t>(SortType::SORTS_CNT), false);
+
+  void SetDefaultValues();
   void ShuffleArray();
 
-  void BubbleSort();
-  void SelectionSort();
-  void QuickSort();
-  void MergeSort();
-  void STDQuickSort();
-  void STDStableSort();
- protected:
-  int array_[ARRAY_SIZE] = {};
+  void ResizeArray(const size_t new_size);
+  void ResizeCnts(const size_t new_size);
+
+  void Sort(const Sort)
 };
 
 #endif /* sorting_system.hpp */
