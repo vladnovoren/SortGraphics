@@ -9,7 +9,6 @@ int main() {
   SortStatistics statistics = sortingSystem.GetSortStatistics(SortType::BUBBLE);
 
   std::cout << statistics.assigns_cnt_.back() << ' ' << statistics.comps_cnt_.back() << '\n';
-
   
   App& app = App::GetInstance();
   app.Exec();
