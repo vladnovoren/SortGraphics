@@ -113,6 +113,19 @@ gui::EventResult gui::AbstractContainerWidget::OnMouseMove(glib::Vector2i new_lo
 }
 
 
+bool gui::AbstractContainerWidget::RemoveChild(AbstractWidget *child) {
+  assert(child != nullptr);
+
+  auto found = std::find(m_children.begin(), m_children.end(), child);
+  if (found == m_children.end()) {
+    printf("attempt to remove widget at address [%p] that isn't child of widget at address [%p]\n", static_cast<void*>(child), static_cast<void*>(this));
+    return false;
+  }
+  m_children.erase(found);
+  return true;
+}
+
+
 void gui::AbstractContainerWidget::Draw(glib::RenderTarget* render_target,
                                         const glib::Vector2i& position) {
   assert(render_target != nullptr);

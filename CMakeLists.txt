@@ -18,9 +18,10 @@ add_link_options(
 )
 
 set(APP_SOURCE src/app.cpp
-               src/coord_system.cpp
+        src/plot_widget.cpp
                src/main.cpp
                src/sorting_system.cpp
+               src/sort_graphics_widget.cpp
 )
 
 add_subdirectory(gui/)

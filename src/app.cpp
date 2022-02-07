@@ -4,8 +4,8 @@ App::App():
      m_render_window(glib::Vector2i(APP_WIDTH, APP_HEIGHT), "SortGraphics") {
   gui::DummyContainerWidget* root = new gui::DummyContainerWidget;
   m_widget_manager.SetRoot(root);
-  CoordSystem* test = new CoordSystem(glib::IntRect(50, 50, 500, 500),
-                                Ranges(0, 0, 500, 500));
+  PlotWidget* test = new PlotWidget(glib::IntRect(50, 50, 500, 500),
+                                    Ranges(0, 0, 500, 500));
   root->AddChild(test);
 }
 
@@ -22,9 +22,6 @@ void App::Exec() {
     while (is_polled) {
       m_widget_manager.GetAndProcessEvent(&m_render_window, is_polled);
     }
-
-    
-
     m_widget_manager.DeleteMatched();
     m_widget_manager.Draw(&m_render_window);
   }

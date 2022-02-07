@@ -2,7 +2,7 @@
 #define APP_HPP
 
 #include "gui.hpp"
-#include "coord_system.hpp"
+#include "plot_widget.hpp"
 
 static const int APP_WIDTH = 1200;
 static const int APP_HEIGHT = 800;

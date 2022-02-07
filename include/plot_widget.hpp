@@ -1,5 +1,5 @@
-#ifndef COORD_SYSTEM_HPP
-#define COORD_SYSTEM_HPP
+#ifndef PLOT_WIDGET_HPP
+#define PLOT_WIDGET_HPP
 
 #include "gui_abstract_widget.hpp"
 
@@ -20,17 +20,17 @@ struct Ranges {
 
 static const int GRAPHICS_THICKNESS = 1;
 
-template<typename T>
-struct FunctionValue {
-  T arg_;
-  T value_;
+template<typename ArgT, typename ValueT>
+struct FuncArgValue {
+  ArgT arg_;
+  ValueT value_;
 };
 
-class CoordSystem: public gui::AbstractWidget {
+class PlotWidget: public gui::AbstractWidget {
  public:
-  CoordSystem() = default;
-  CoordSystem(const glib::IntRect& location, const Ranges& ranges);
-  ~CoordSystem() = default;
+  PlotWidget() = default;
+  PlotWidget(const glib::IntRect& location, const Ranges& ranges);
+  ~PlotWidget() = default;
 
   void SetPPU(const double ppu);
   void SetRanges(const Ranges& ranges);
@@ -40,8 +40,8 @@ class CoordSystem: public gui::AbstractWidget {
 
   void Clear();
 
-  template<typename T>
-  void RenderFunction(const FunctionValue<T>* array, size_t size);
+  template<typename ArgT, typename ValueT>
+  void RenderFunction(const FuncArgValue<ArgT, ValueT>* array, size_t size);
  protected:
   double ppu_ = 1;
   Ranges ranges_;
@@ -52,14 +52,13 @@ class CoordSystem: public gui::AbstractWidget {
   void CountCenter();
 
   void RenderBoundingbox();
-
   void RenderAxes();
 
   void Draw(glib::RenderTarget* render_target, const glib::Vector2i& position);
 };
 
-template<typename T>
-void CoordSystem::RenderFunction(const FunctionValue<T>* array, size_t size) {
+template<typename ArgT, typename ValueT>
+void PlotWidget::RenderFunction(const FuncArgValue<ArgT, ValueT>* array, size_t size) {
   assert(array != nullptr);
 
   glib::Vector2i curr(array[0].arg_, -array[0].value_);
@@ -84,4 +83,4 @@ void CoordSystem::RenderFunction(const FunctionValue<T>* array, size_t size) {
   render_texture_.RenderLine(line, glib::ColorRGBA());
 }
 
-#endif /* coord_system.hpp */
+#endif /* plot_widget.hpp */

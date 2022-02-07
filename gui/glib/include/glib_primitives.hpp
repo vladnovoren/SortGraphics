@@ -82,7 +82,6 @@ namespace glib {
     m_begin(begin_x, begin_y), m_end(end_x, end_y), m_thickness(thickness) {}
   };
 
-
   using IntRect   = Rect<int>;
   using UIntRect  = Rect<unsigned int>;
   using FloatRect = Rect<float>;

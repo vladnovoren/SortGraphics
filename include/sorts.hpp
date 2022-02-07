@@ -30,7 +30,7 @@ class OpCountElem {
 
   ~OpCountElem() = default;
 
-  bool operator<(const OpCountElem& right) {
+  bool operator<(const OpCountElem& right) const {
     ++comps_cnt_;
     return value_ < right.value_;
   }
@@ -50,12 +50,17 @@ class OpCountElem {
     return value_ >= right.value_;
   }
 
-  size_t GetCompsCnt() const {
+  static size_t GetCompsCnt() {
     return comps_cnt_;
   }
 
-  size_t GetAssignsCnt() const {
+  static size_t GetAssignsCnt() {
     return assigns_cnt_;
+  }
+
+  static void ResetOpCnts() {
+    assigns_cnt_ = 0;
+    comps_cnt_   = 0;
   }
  protected:
   static size_t assigns_cnt_;

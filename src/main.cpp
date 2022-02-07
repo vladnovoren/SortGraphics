@@ -1,27 +1,17 @@
-#include "sorts.hpp"
+#include "sorting_system.hpp"
 #include "app.hpp"
 
 int main() {
-
-  
   size_t size = 0;
   std::cin >> size;
-  OpCountElem<int>* array = new OpCountElem<int>[size];
-  CheckAlloc(array);
 
-  SetRandomValues(array, 0, size - 1);
-  // BubbleSort(array, 0, size - 1);
-  SelectionSort(array, 0, size - 1);
-  // MergeSort(array, 0, size - 1);
-  // QuickSort(array, 0, size - 1);
+  SortingSystem sortingSystem(100);
+  SortStatistics statistics = sortingSystem.GetSortStatistics(SortType::BUBBLE);
 
-  if (CheckIncrease(array, 0, size - 1)) {
-    std::cout << "success!\n";
-  } else {
-    std::cout << "failure!\n";
-  }
+  std::cout << statistics.assigns_cnt_.back() << ' ' << statistics.comps_cnt_.back() << '\n';
 
-  delete[] array;
+  App& app = App::GetInstance();
+  app.Exec();
 
   return 0;
 }

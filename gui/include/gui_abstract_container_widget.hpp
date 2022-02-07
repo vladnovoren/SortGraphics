@@ -32,6 +32,8 @@ namespace gui {
 
     void AddChild(AbstractWidget* child);
 
+    bool RemoveChild(AbstractWidget* child);
+
     void Draw(glib::RenderTarget* render_target,
               const glib::Vector2i& position) override;
   };

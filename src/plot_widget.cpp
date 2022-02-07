@@ -1,4 +1,4 @@
-#include "coord_system.hpp"
+#include "plot_widget.hpp"
 
 Ranges::Ranges(const double min_x, const double min_y,
                const double max_x, const double max_y):
@@ -16,8 +16,8 @@ double Ranges::GetHeight() const {
   return max_y_ - min_y_;
 }
 
-CoordSystem::CoordSystem(const glib::IntRect& location,
-                   const Ranges& ranges):
+PlotWidget::PlotWidget(const glib::IntRect& location,
+                       const Ranges& ranges):
           AbstractWidget(location), ranges_(ranges) {
   ppu_ = static_cast<double>(ranges.GetWidth() / location.m_size.x);
   CountCenter();
@@ -25,28 +25,28 @@ CoordSystem::CoordSystem(const glib::IntRect& location,
   Clear();
 }
 
-void CoordSystem::SetPPU(const double ppu) {
+void PlotWidget::SetPPU(const double ppu) {
   ppu_ = ppu;
 }
 
-void CoordSystem::SetRanges(const Ranges& ranges) {
+void PlotWidget::SetRanges(const Ranges& ranges) {
   ranges_ = ranges;
 }
 
-double CoordSystem::GetPPU() const {
+double PlotWidget::GetPPU() const {
   return ppu_;
 }
 
-const Ranges& CoordSystem::GetRanges() const {
+const Ranges& PlotWidget::GetRanges() const {
   return ranges_;
 }
 
-void CoordSystem::CountCenter() {
+void PlotWidget::CountCenter() {
   center_.x = ppu_ * fabs(ranges_.min_x_);
   center_.y = ppu_ * fabs(ranges_.max_y_);
 }
 
-void CoordSystem::RenderBoundingbox() {
+void PlotWidget::RenderBoundingbox() {
   glib::Vector2i upper_left(GRAPHICS_THICKNESS, GRAPHICS_THICKNESS);
   glib::Vector2i upper_right(upper_left.x + m_location.m_size.x - 2 * GRAPHICS_THICKNESS,
                              upper_left.y);
@@ -69,7 +69,7 @@ void CoordSystem::RenderBoundingbox() {
   render_texture_.Display();
 }
 
-void CoordSystem::RenderAxes() {
+void PlotWidget::RenderAxes() {
   glib::Vector2i ox_left(GRAPHICS_THICKNESS, center_.y);
   glib::Vector2i ox_right(m_location.m_size.x - GRAPHICS_THICKNESS, center_.y);
 
@@ -87,15 +87,15 @@ void CoordSystem::RenderAxes() {
   render_texture_.Display();
 }
 
-void CoordSystem::Clear() {
+void PlotWidget::Clear() {
   render_texture_.Clear(glib::ColorRGBA(1, 1, 1));
 
   RenderBoundingbox();
   RenderAxes();
 }
 
-void CoordSystem::Draw(glib::RenderTarget* render_target,
-                    const glib::Vector2i& position) {
+void PlotWidget::Draw(glib::RenderTarget* render_target,
+                      const glib::Vector2i& position) {
   assert(render_target != nullptr);
 
   render_target->CopyRenderTexture(render_texture_, position);
