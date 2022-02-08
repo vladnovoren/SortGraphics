@@ -24,6 +24,7 @@ set(APP_SOURCE src/app.cpp
                src/sort_plots_widget.cpp
                src/clear_plot_functor.cpp
                src/draw_func_plot_functor.cpp
+               src/i_plot_functor.cpp
 )
 
 add_subdirectory(gui/)
