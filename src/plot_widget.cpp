@@ -102,6 +102,11 @@ void PlotWidget::Clear() {
   RenderAxes();
 }
 
+template<typename ArgT, typename ValueT>
+void PlotWidget::RenderFunction(const std::vector<FuncArgValue<ArgT, ValueT>>& function) {
+
+}
+
 void PlotWidget::Draw(glib::RenderTarget* render_target,
                       const glib::Vector2i& position) {
   assert(render_target != nullptr);
