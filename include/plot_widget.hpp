@@ -29,6 +29,7 @@ struct FuncArgValue {
 class PlotWidget: public gui::AbstractWidget {
  public:
   PlotWidget() = default;
+  PlotWidget(const glib::IntRect& location);
   PlotWidget(const glib::IntRect& location, const Ranges& ranges);
   ~PlotWidget() = default;
 

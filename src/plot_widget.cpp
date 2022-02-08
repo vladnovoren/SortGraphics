@@ -16,9 +16,17 @@ double Ranges::GetHeight() const {
   return max_y_ - min_y_;
 }
 
+PlotWidget::PlotWidget(const glib::IntRect &location):
+            gui::AbstractWidget(location),
+            ranges_(0, 0, location.m_size.x, location.m_size.y) {
+  CountCenter();
+  render_texture_.Resize(location.m_size);
+  Clear();
+}
+
 PlotWidget::PlotWidget(const glib::IntRect& location,
                        const Ranges& ranges):
-          AbstractWidget(location), ranges_(ranges) {
+            gui::AbstractWidget(location), ranges_(ranges) {
   ppu_ = static_cast<double>(ranges.GetWidth() / location.m_size.x);
   CountCenter();
   render_texture_.Resize(location.m_size);

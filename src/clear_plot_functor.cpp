@@ -1,0 +1,1 @@
+#include "clear_plot_functor.hpp"
