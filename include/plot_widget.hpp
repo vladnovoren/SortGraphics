@@ -42,7 +42,7 @@ class PlotWidget: public gui::AbstractWidget {
   void Clear();
 
   template<typename ArgT, typename ValueT>
-  void RenderFunction(const FuncArgValue<ArgT, ValueT>* array, size_t size);
+  void RenderFunction(const std::vector<FuncArgValue<ArgT, ValueT>>& function);
  protected:
   double ppu_ = 1;
   Ranges ranges_;

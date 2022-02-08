@@ -2,15 +2,15 @@
 #define CLEAR_PLOT_FUNCTOR_HPP
 
 #include "plot_widget.hpp"
-#include "gui_abstract_widget_functor.hpp"
+#include "i_plot_functor.hpp"
 
-class ClearPlotFunctor: gui::AbstractWidgetFunctor {
+class ClearPlotFunctor: public IPlotFunctor {
  public:
-  ClearPlotFunctor();
+  ClearPlotFunctor() = default;
   ClearPlotFunctor(PlotWidget* plot_widget);
+  ~ClearPlotFunctor() override = default;
 
-  void SetPlotWidget(PlotWidget);
- private:
+  void operator()() override;
 };
 
 #endif /* clear_plot_functor.hpp */
