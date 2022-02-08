@@ -7,7 +7,7 @@
 class ClearPlotFunctor: gui::AbstractWidgetFunctor {
  public:
   ClearPlotFunctor();
-  ClearPlotFunctor();
+  ClearPlotFunctor(PlotWidget* plot_widget);
 
   void SetPlotWidget(PlotWidget);
  private:
