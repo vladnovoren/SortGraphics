@@ -4,16 +4,16 @@
 #include "sorts.hpp"
 
 enum class SortType {
-  BUBBLE,
   SELECTION,
   QUICK,
   MERGE,
   STD_SORT,
   STD_STABLE_SORT,
+  BUBBLE,
   SORTS_CNT
 };
 
-static const size_t DEFAULT_ARRAY_SIZE = 100;
+static const size_t DEFAULT_ARRAY_SIZE = 500;
 
 struct SortStatistics {
   const std::vector<size_t>* assigns_cnt_ = nullptr;

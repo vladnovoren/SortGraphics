@@ -20,11 +20,13 @@ class OpCountElem {
 
   OpCountElem(const OpCountElem& other): value_(other.value_) {
     ++assigns_cnt_;
+//    printf("%zu\n", assigns_cnt_);
   }
 
   OpCountElem& operator=(const OpCountElem& other) {
     value_ = other.value_;
     ++assigns_cnt_;
+//    printf("%zu\n", assigns_cnt_);
     return *this;
   }
 
@@ -99,10 +101,10 @@ template<typename T>
 void BubbleSort(T* array, size_t left, size_t right) {
   assert(array != nullptr);
 
-  for (size_t i = left; i <= right; ++i) {
-    for (size_t j = left; j < i; ++j) {
-      if (array[i] < array[j]) {
-        std::swap(array[i], array[j]);
+  for (size_t i = left; i <= right; i++) {
+    for (size_t j = left; j + i < right + left; j++) {
+      if (array[j + 1] < array[j]) {
+        std::swap(array[j], array[j + 1]);
       }
     }
   }
