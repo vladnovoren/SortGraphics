@@ -16,8 +16,8 @@ enum class SortType {
 static const size_t DEFAULT_ARRAY_SIZE = 100;
 
 struct SortStatistics {
-  const std::vector<size_t>& assigns_cnt_ = {};
-  const std::vector<size_t>& comps_cnt_   = {};
+  const std::vector<size_t>* assigns_cnt_ = nullptr;
+  const std::vector<size_t>* comps_cnt_   = nullptr;
 };
 
 class SortingSystem {

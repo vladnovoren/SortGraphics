@@ -13,21 +13,26 @@ SortingSystem::SortingSystem(const size_t new_size) {
 void SortingSystem::Resize(const size_t new_size) {
   array_.resize(new_size);
   ResizeCnts(new_size);
-  std::cout << assigns_cnt_.size() << '\n';
 }
 
 SortStatistics SortingSystem::GetSortStatistics(const SortType sort_type) {
-  for (size_t i = 0; i < array_.size(); ++i) {
-    OpCountElem<int>::ResetOpCnts();
-    SetDefaultValues(0, i);
-    ShuffleArray(0, i);
-    Sort(sort_type, 0, i);
-    UpdateCounters(sort_type, i);
-  }
+//  size_t sort_id = static_cast<size_t>(sort_type);
+//  if (!sort_checked_[sort_id]) {
+    for (size_t i = 0; i < array_.size(); ++i) {
+      OpCountElem<int>::ResetOpCnts();
+      SetDefaultValues(0, i);
+      ShuffleArray(0, i);
+      Sort(sort_type, 0, i);
+      UpdateCounters(sort_type, i);
+    }
+//    printf("1234\n");
+//    sort_checked_[sort_id] = true;
+//  }
   return GetReadyStatistics(sort_type);
 }
 
 void SortingSystem::InitCounters() {
+  sort_checked_.assign(static_cast<size_t>(SortType::SORTS_CNT), false);
   assigns_cnt_.resize(static_cast<size_t>(SortType::SORTS_CNT));
   comps_cnt_  .resize(static_cast<size_t>(SortType::SORTS_CNT));
 }
@@ -36,10 +41,12 @@ void SortingSystem::SetDefaultValues(const size_t left, const size_t right) {
   for (size_t i = left; i <= right; ++i) {
     array_[i] = i;
   }
+  OpCountElem<int>::ResetOpCnts();
 }
 
 void SortingSystem::ShuffleArray(const size_t left, const size_t right) {
   std::shuffle(array_.begin() + left, array_.begin() + right + 1, std::default_random_engine());
+  OpCountElem<int>::ResetOpCnts();
 }
 
 void SortingSystem::ResizeCnts(const size_t new_size) {
@@ -100,5 +107,5 @@ void SortingSystem::UpdateCompsCnt(const SortType sort_type, const size_t elems_
 
 SortStatistics SortingSystem::GetReadyStatistics(const SortType sort_type) const {
   size_t sort_id = static_cast<size_t>(sort_type);
-  return {assigns_cnt_[sort_id], comps_cnt_[sort_id]};
+  return {&assigns_cnt_[sort_id], &comps_cnt_[sort_id]};
 }

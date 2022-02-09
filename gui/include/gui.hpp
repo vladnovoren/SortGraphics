@@ -7,5 +7,7 @@
 #include "gui_skin_manager.hpp"
 #include "gui_widget_manager.hpp"
 #include "gui_events.hpp"
+#include "gui_plain_button.hpp"
+#include "gui_select_button.hpp"
 
 #endif /* gui.hpp */

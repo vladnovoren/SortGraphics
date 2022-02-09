@@ -1,5 +1,16 @@
 cmake_minimum_required(VERSION 3.16.3)
 
+add_compile_options(
+        -Wall
+        -Wextra
+        -Werror
+        -Wpedantic
+
+        -g
+        -Og
+        -fsanitize=address
+)
+
 set(GLIB_SOURCE src/glib_clock.cpp
                 src/glib_color.cpp
                 src/glib_events.cpp

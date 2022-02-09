@@ -10,7 +10,7 @@ class ClearPlotFunctor: public IPlotFunctor {
   ClearPlotFunctor(PlotWidget* plot_widget);
   ~ClearPlotFunctor() override = default;
 
-  void operator()() override;
+  void operator()();
 };
 
 #endif /* clear_plot_functor.hpp */

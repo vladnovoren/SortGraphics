@@ -2,11 +2,6 @@
 
 App::App():
      m_render_window(glib::Vector2i(APP_WIDTH, APP_HEIGHT), "SortGraphics") {
-  gui::DummyContainerWidget* root = new gui::DummyContainerWidget;
-  m_widget_manager.SetRoot(root);
-  PlotWidget* test = new PlotWidget(glib::IntRect(50, 50, 500, 500),
-                                    Ranges(0, 0, 500, 500));
-  root->AddChild(test);
 }
 
 App::~App() = default;
@@ -16,7 +11,16 @@ App& App::GetInstance() {
   return instance;
 }
 
+void App::Init() {
+  gui::DummyContainerWidget* root = new gui::DummyContainerWidget(glib::IntRect (0, 0, APP_HEIGHT, APP_WIDTH));
+  m_widget_manager.SetRoot(root);
+
+  SortPlotsWidget* sort_plots_widget = new SortPlotsWidget;
+  root->AddChild(sort_plots_widget);
+}
+
 void App::Exec() {
+  Init();
   while (m_widget_manager.IsOpen()) {
     bool is_polled = true;
     while (is_polled) {

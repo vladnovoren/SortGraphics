@@ -62,8 +62,7 @@ void gui::AbstractButton::Draw(glib::RenderTarget* render_target,
     m_skin->Render();
     m_needs_to_render = false;
   }
-  glib::Vector2i position_to_copy = position + m_location.m_position;
-  m_skin->CopyToRenderTarget(render_target, position_to_copy);
+  m_skin->CopyToRenderTarget(render_target, position);
 }
 
 

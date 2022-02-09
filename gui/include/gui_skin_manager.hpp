@@ -10,7 +10,7 @@
 #include "gui_window_skin.hpp"
 
 namespace gui {
-  static const char* const AQUA_SKIN_FOLDER_PATH = "../Skins/aqua/";
+  static const char* const AQUA_SKIN_FOLDER_PATH = "Skins/aqua/";
 
   class SkinManager {
    protected:

@@ -2,7 +2,7 @@
 #define APP_HPP
 
 #include "gui.hpp"
-#include "plot_widget.hpp"
+#include "sort_plots_widget.hpp"
 
 static const int APP_WIDTH = 1200;
 static const int APP_HEIGHT = 800;
@@ -19,6 +19,7 @@ class App {
 
   glib::RenderWindow* GetRenderWindow();
 
+  void Init();
   void Exec();
 };
 

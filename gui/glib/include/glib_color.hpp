@@ -29,6 +29,13 @@ namespace glib {
   ColorRGBA operator * (const double scalar, const ColorRGBA& color);
 
   sf::Color GLibToSFMLColor(const ColorRGBA& color);
+
+  static const ColorRGBA BLACK  = ColorRGBA(0, 0, 0);
+  static const ColorRGBA WHITE  = ColorRGBA(1, 1, 1);
+  static const ColorRGBA RED    = ColorRGBA(1, 0, 0);
+  static const ColorRGBA GREEN  = ColorRGBA(0, 1, 0);
+  static const ColorRGBA BLUE   = ColorRGBA(0, 0, 1);
+  static const ColorRGBA YELLOW = ColorRGBA(1, 1, 0);
 }
 
 

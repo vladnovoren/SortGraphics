@@ -42,7 +42,10 @@ class PlotWidget: public gui::AbstractWidget {
   void Clear();
 
   template<typename ArgT, typename ValueT>
-  void RenderFunction(const std::vector<FuncArgValue<ArgT, ValueT>>& function);
+  void RenderFunction(const std::vector<FuncArgValue<ArgT, ValueT>>& function, const glib::ColorRGBA& color);
+
+  template<typename ValueT>
+  void RenderSequence(const std::vector<ValueT>& sequence, const glib::ColorRGBA& color);
  protected:
   double ppu_ = 1;
   Ranges ranges_;
@@ -59,29 +62,37 @@ class PlotWidget: public gui::AbstractWidget {
 };
 
 template<typename ArgT, typename ValueT>
-void PlotWidget::RenderFunction(const FuncArgValue<ArgT, ValueT>* array, size_t size) {
-  assert(array != nullptr);
-
-  glib::Vector2i curr(array[0].arg_, -array[0].value_);
+void PlotWidget::RenderFunction(const std::vector<FuncArgValue<ArgT, ValueT>>& function, const glib::ColorRGBA& color) {
+  glib::Vector2i curr(function[0].arg_, -function[0].value_);
   glib::Vector2i prev = curr;
 
-  std::cout << "center: ";
-  center_.Print();
-  std::cout << '\n';
-
   glib::IntLine line;
-  for (size_t i = 1; i < size; ++i) {
+  for (size_t i = 1; i < function.size(); ++i) {
     prev = curr;
-    curr = glib::Vector2i(array[i].arg_, -array[i].value_);
+    curr = glib::Vector2i(function[i].arg_, -function[i].value_);
     line = glib::IntLine(center_ + ppu_ * prev, center_ + ppu_ * curr, GRAPHICS_THICKNESS);
-    line.m_begin.Print();
-    std::cout << '\n';
-    line.m_end.Print();
-    render_texture_.RenderLine(line, glib::ColorRGBA());
+    render_texture_.RenderLine(line, color);
   }
 
   line = glib::IntLine(center_ + ppu_ * prev, center_ + ppu_ * curr, GRAPHICS_THICKNESS);
-  render_texture_.RenderLine(line, glib::ColorRGBA());
+  render_texture_.RenderLine(line, color);
+}
+
+template<typename ValueT>
+void PlotWidget::RenderSequence(const std::vector<ValueT>& sequence, const glib::ColorRGBA& color) {
+  glib::Vector2i curr(1, - (sequence[0] * 0.1));
+  glib::Vector2i prev = curr;
+
+  glib::IntLine line;
+  for (size_t i = 1; i < sequence.size(); i += 2) {
+    prev = curr;
+    curr = glib::Vector2i(i + 1, -(sequence[i] * 0.1));
+    line = glib::IntLine(center_ + ppu_ * prev, center_ + curr, 2);
+    render_texture_.RenderLine(line, color);
+  }
+
+  line = glib::IntLine(center_ + ppu_ * prev, center_ + curr, 2);
+  render_texture_.RenderLine(line, color);
 }
 
 #endif /* plot_widget.hpp */

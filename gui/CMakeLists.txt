@@ -2,6 +2,17 @@ cmake_minimum_required(VERSION 3.16.3)
 
 add_subdirectory(glib/)
 
+add_compile_options(
+        -Wall
+        -Wextra
+        -Werror
+        -Wpedantic
+
+        -g
+        -Og
+        -fsanitize=address
+)
+
 set(GUI_SOURCE src/open_file.cpp
                src/gui_abstract_widget/gui_abstract_widget.cpp
                src/gui_abstract_widget/gui_abstract_widget_functor.cpp
