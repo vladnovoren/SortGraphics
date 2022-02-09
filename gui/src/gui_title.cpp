@@ -31,5 +31,5 @@ void gui::Title::SetFontSize(unsigned int font_size) {
 void gui::Title::Draw(glib::RenderTarget* render_target, const glib::Vector2i& position) {
   assert(render_target != nullptr);
 
-  render_target->RenderText(&m_text, position + m_location.m_position);
+  render_target->RenderText(&m_text, position);
 }

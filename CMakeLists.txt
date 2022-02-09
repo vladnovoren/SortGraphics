@@ -10,11 +10,11 @@ add_compile_options(
 
   -g
   -Og
-  -fsanitize=address
+#  -fsanitize=address
 )
 
 add_link_options(
-  -fsanitize=address
+#  -fsanitize=address
 )
 
 set(APP_SOURCE src/app.cpp
@@ -25,6 +25,7 @@ set(APP_SOURCE src/app.cpp
                src/clear_plot_functor.cpp
                src/i_plot_functor.cpp
                src/render_sort_stat_functor.cpp
+               src/sort_plots_clear_functor.cpp
 )
 
 add_subdirectory(gui/)

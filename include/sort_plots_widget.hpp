@@ -5,6 +5,7 @@
 #include "sorting_system.hpp"
 #include "plot_widget.hpp"
 #include "render_sort_stat_functor.hpp"
+#include "sort_plots_clear_functor.hpp"
 
 static const glib::IntRect DEFAULT_PLOTS_WIDGET_LOCATION(0, 0, 1150, 600);
 static const glib::IntRect DEFAULT_ASSIGNS_PLOT_LOCATION(50, 50, 500, 500);
@@ -24,6 +25,8 @@ class SortPlotsWidget: public gui::DummyContainerWidget {
   PlotWidget* comps_plot_   = nullptr;
 
   PlotWidget* AddPlot(const glib::IntRect& location);
+  void Init();
+  void InitLabels();
   void InitButtons();
 };
 

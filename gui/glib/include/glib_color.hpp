@@ -15,6 +15,7 @@ namespace glib {
 
     ColorRGBA() = default;
     ColorRGBA(double r, double g, double b);
+    ColorRGBA(int r, int g, int b);
     ColorRGBA(double r, double g, double b, double a);
 
     ColorRGBA& operator *= (const double mul);
@@ -30,12 +31,14 @@ namespace glib {
 
   sf::Color GLibToSFMLColor(const ColorRGBA& color);
 
-  static const ColorRGBA BLACK  = ColorRGBA(0, 0, 0);
-  static const ColorRGBA WHITE  = ColorRGBA(1, 1, 1);
-  static const ColorRGBA RED    = ColorRGBA(1, 0, 0);
-  static const ColorRGBA GREEN  = ColorRGBA(0, 1, 0);
-  static const ColorRGBA BLUE   = ColorRGBA(0, 0, 1);
-  static const ColorRGBA YELLOW = ColorRGBA(1, 1, 0);
+  static const ColorRGBA BLACK  = ColorRGBA(0.0, 0.0, 0.0);
+  static const ColorRGBA WHITE  = ColorRGBA(1.0, 1.0, 1.0);
+  static const ColorRGBA RED    = ColorRGBA(1.0, 0.0, 0.0);
+  static const ColorRGBA GREEN  = ColorRGBA(0.0, 1.0, 0.0);
+  static const ColorRGBA BLUE   = ColorRGBA(0.0, 0.0, 1.0);
+  static const ColorRGBA YELLOW = ColorRGBA(1.0, 1.0, 0.0);
+  static const ColorRGBA PINK   = ColorRGBA(0xE7, 0x54, 0x80);
+  static const ColorRGBA PURPLE = ColorRGBA(0x42, 0x31, 0x89);
 }
 
 

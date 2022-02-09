@@ -18,7 +18,8 @@ struct Ranges {
   double GetHeight() const;
 };
 
-static const int GRAPHICS_THICKNESS = 1;
+static const int GRAPHICS_BOUNDING_THICKNESS = 2;
+static const int GRAPHICS_THICKNESS = 2;
 
 template<typename ArgT, typename ValueT>
 struct FuncArgValue {
@@ -76,6 +77,7 @@ void PlotWidget::RenderFunction(const std::vector<FuncArgValue<ArgT, ValueT>>& f
 
   line = glib::IntLine(center_ + ppu_ * prev, center_ + ppu_ * curr, GRAPHICS_THICKNESS);
   render_texture_.RenderLine(line, color);
+  RenderBoundingbox();
 }
 
 template<typename ValueT>
@@ -87,12 +89,13 @@ void PlotWidget::RenderSequence(const std::vector<ValueT>& sequence, const glib:
   for (size_t i = 1; i < sequence.size(); i += 2) {
     prev = curr;
     curr = glib::Vector2i(i + 1, -(sequence[i] * 0.1));
-    line = glib::IntLine(center_ + ppu_ * prev, center_ + curr, 2);
+    line = glib::IntLine(center_ + ppu_ * prev, center_ + curr, GRAPHICS_THICKNESS);
     render_texture_.RenderLine(line, color);
   }
 
-  line = glib::IntLine(center_ + ppu_ * prev, center_ + curr, 2);
+  line = glib::IntLine(center_ + ppu_ * prev, center_ + curr, GRAPHICS_THICKNESS);
   render_texture_.RenderLine(line, color);
+  RenderBoundingbox();
 }
 
 #endif /* plot_widget.hpp */

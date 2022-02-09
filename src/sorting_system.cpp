@@ -16,20 +16,17 @@ void SortingSystem::Resize(const size_t new_size) {
 }
 
 SortStatistics SortingSystem::GetSortStatistics(const SortType sort_type) {
-//  size_t sort_id = static_cast<size_t>(sort_type);
-//  if (!sort_checked_[sort_id]) {
+  size_t sort_id = static_cast<size_t>(sort_type);
+  if (!sort_checked_[sort_id]) {
     for (size_t i = 0; i < array_.size(); ++i) {
       SetDefaultValues(0, i);
       ShuffleArray(0, i);
       OpCountElem<int>::ResetOpCnts();
-//      printf("start\n");
       Sort(sort_type, 0, i);
-//      std::cout << OpCountElem<int>::GetAssignsCnt() << ' ' << OpCountElem<int>::GetCompsCnt() << '\n';
       UpdateCounters(sort_type, i);
     }
-//    printf("1234\n");
-//    sort_checked_[sort_id] = true;
-//  }
+    sort_checked_[sort_id] = true;
+  }
   return GetReadyStatistics(sort_type);
 }
 
@@ -47,10 +44,6 @@ void SortingSystem::SetDefaultValues(const size_t left, const size_t right) {
 }
 
 void SortingSystem::ShuffleArray(const size_t left, const size_t right) {
-//  srand(time(NULL));
-//  for (size_t i = right; i >= left && i <= right; --i) {
-//    std::swap(array_[i], array_[rand() % (i + 1)]);
-//  }
   std::shuffle(array_.begin() + left, array_.begin() + right + 1, std::default_random_engine());
 }
 
@@ -75,7 +68,7 @@ void SortingSystem::Sort(const SortType sort_type, const size_t left, const size
       QuickSort(array_.data(), left, right);
       break;
     case SortType::MERGE:
-      QuickSort(array_.data(), left, right);
+      MergeSort(array_.data(), left, right);
       break;
     case SortType::STD_SORT:
       std::sort(array_.begin() + left, array_.begin() + right + 1);

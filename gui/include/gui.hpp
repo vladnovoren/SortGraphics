@@ -9,5 +9,6 @@
 #include "gui_events.hpp"
 #include "gui_plain_button.hpp"
 #include "gui_select_button.hpp"
+#include "gui_title.hpp"
 
 #endif /* gui.hpp */

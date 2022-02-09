@@ -4,10 +4,15 @@
 glib::ColorRGBA::ColorRGBA(double r, double g, double b):
                  r(r), g(g), b(b) {}
 
+glib::ColorRGBA::ColorRGBA(int r, int g, int b):
+                 r(r), g(g), b(b) {
+  this->r /= 255;
+  this->g /= 255;
+  this->b /= 255;
+}
 
 glib::ColorRGBA::ColorRGBA(double r, double g, double b, double a):
                  r(r), g(g), b(b), a(a) {}
-
 
 
 glib::ColorRGBA& glib::ColorRGBA::operator *= (const double mul) {

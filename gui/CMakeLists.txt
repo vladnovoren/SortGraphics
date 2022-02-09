@@ -10,7 +10,7 @@ add_compile_options(
 
         -g
         -Og
-        -fsanitize=address
+#        -fsanitize=address
 )
 
 set(GUI_SOURCE src/open_file.cpp

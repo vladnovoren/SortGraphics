@@ -55,17 +55,10 @@ void PlotWidget::CountCenter() {
 }
 
 void PlotWidget::RenderBoundingbox() {
-  glib::Vector2i upper_left(GRAPHICS_THICKNESS, GRAPHICS_THICKNESS);
-  glib::Vector2i upper_right(upper_left.x + m_location.m_size.x - 2 * GRAPHICS_THICKNESS,
-                             upper_left.y);
-  glib::Vector2i lower_left(upper_left.x,
-                            upper_left.y + m_location.m_size.y - 2 * GRAPHICS_THICKNESS);
-  glib::Vector2i lower_right(upper_right.x, lower_left.y);
-
-  glib::IntLine upper_line(upper_left, upper_right, GRAPHICS_THICKNESS);
-  glib::IntLine right_line(upper_right, lower_right, GRAPHICS_THICKNESS);
-  glib::IntLine lower_line(lower_right, lower_left, GRAPHICS_THICKNESS);
-  glib::IntLine left_line(lower_left, upper_left, GRAPHICS_THICKNESS);
+  glib::IntLine upper_line(0, 0.5 * GRAPHICS_BOUNDING_THICKNESS, m_location.m_size.x, 0.5 * GRAPHICS_BOUNDING_THICKNESS, GRAPHICS_BOUNDING_THICKNESS);
+  glib::IntLine right_line(m_location.m_size.x - 0.5 * GRAPHICS_BOUNDING_THICKNESS, 0, m_location.m_size.x - 0.5 * GRAPHICS_BOUNDING_THICKNESS, m_location.m_size.y, GRAPHICS_BOUNDING_THICKNESS);
+  glib::IntLine lower_line(0, m_location.m_size.y - 0.5 * GRAPHICS_BOUNDING_THICKNESS, m_location.m_size.x, m_location.m_size.y - 0.5 * GRAPHICS_BOUNDING_THICKNESS, GRAPHICS_BOUNDING_THICKNESS);
+  glib::IntLine left_line(0.5 * GRAPHICS_BOUNDING_THICKNESS, 0, 0.5 * GRAPHICS_BOUNDING_THICKNESS, m_location.m_size.y ,GRAPHICS_BOUNDING_THICKNESS);
 
   glib::ColorRGBA black;
 
@@ -96,7 +89,7 @@ void PlotWidget::RenderAxes() {
 }
 
 void PlotWidget::Clear() {
-  render_texture_.Clear(glib::ColorRGBA(1, 1, 1));
+  render_texture_.Clear(glib::WHITE);
 
   RenderBoundingbox();
   RenderAxes();

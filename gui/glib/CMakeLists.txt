@@ -8,7 +8,7 @@ add_compile_options(
 
         -g
         -Og
-        -fsanitize=address
+#        -fsanitize=address
 )
 
 set(GLIB_SOURCE src/glib_clock.cpp
