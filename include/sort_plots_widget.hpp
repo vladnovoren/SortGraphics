@@ -7,7 +7,7 @@
 #include "render_sort_stat_functor.hpp"
 #include "sort_plots_clear_functor.hpp"
 
-static const glib::IntRect DEFAULT_PLOTS_WIDGET_LOCATION(0, 0, 1150, 600);
+static const glib::IntRect DEFAULT_PLOTS_WIDGET_LOCATION(0, 0, 1200, 800);
 static const glib::IntRect DEFAULT_ASSIGNS_PLOT_LOCATION(50, 50, 500, 500);
 static const glib::IntRect DEFAULT_COMPS_PLOT_LOCATION(600, 50, 500, 500);
 
